@@ -9,7 +9,7 @@ if (!MONGODB_URI) {
 }
 
 const connectDB = async() => {
-  await mongoose.connect(MONGODB_URI);
+  await mongoose.connect(MONGODB_URI)
 }
 
-export default connectDB;
+export default connectDB
