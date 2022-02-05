@@ -6,7 +6,12 @@ const Auth: React.FC = ({ children }) => {
   const router = useRouter()
 
   useEffect(() => {
-    // Cookieのチェック
+    // ログイン画面とアカウント作成画面では Cookie のチェックをしない
+    if (router.pathname == '/login' || router.pathname == '/sign_up') {
+      return
+    }
+
+    // Cookie のチェック
     const signedIn = Cookies.get("signedIn")
 
     // signedIn が true じゃなければ /login へ
