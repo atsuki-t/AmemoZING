@@ -12,6 +12,4 @@ const user = new mongoose.Schema({
   }
 })
 
-export default mongoose.models.User
-  ? mongoose.models.User
-  : mongoose.model('User', user)
+export default mongoose.models.User || mongoose.model('User', user)
