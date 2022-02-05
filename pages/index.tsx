@@ -3,7 +3,17 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
+import { useRouter } from "next/router"
+import Cookies from "js-cookie"
+
 const Home: NextPage = () => {
+  const router = useRouter()
+
+  const logout = () => {
+    Cookies.remove("signedIn")
+    router.replace("/login")
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -51,6 +61,7 @@ const Home: NextPage = () => {
             </p>
           </a>
         </div>
+        <button onClick={logout}>ログアウト</button>
       </main>
 
       <footer className={styles.footer}>
