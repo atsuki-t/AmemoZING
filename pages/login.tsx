@@ -10,8 +10,8 @@ const Login: React.FC = () => {
 
   const submitContact = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const username: String = event.currentTarget.username.value;
-    const password: String = event.currentTarget.password.value;
+    const username: String = event.currentTarget.username.value
+    const password: String = event.currentTarget.password.value
 
     axios.get('/api/user_find', {
       params: {
@@ -19,11 +19,11 @@ const Login: React.FC = () => {
         password: password
       }
     }).then((res) => {
-      const { data } = res;
+      const { data } = res
 
       if (data) {
-        Cookies.set("signedIn", "true")
-        router.replace("/")
+        Cookies.set('signedIn', 'true')
+        router.replace('/')
       } else {
         // アカウントが見つからなかった時の処理
       }

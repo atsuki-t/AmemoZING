@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app'
 
 import Auth from '../components/auth'
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <Auth>
       <Component {...pageProps} />

@@ -1,6 +1,6 @@
-import { useEffect } from "react"
-import { useRouter } from "next/router"
-import Cookies from "js-cookie"
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import Cookies from 'js-cookie'
 
 const Auth: React.FC = ({ children }) => {
   const router = useRouter()
@@ -12,13 +12,13 @@ const Auth: React.FC = ({ children }) => {
     }
 
     // Cookie のチェック
-    const signedIn = Cookies.get("signedIn")
+    const signedIn = Cookies.get('signedIn')
 
     // signedIn が true じゃなければ /login へ
-    if (signedIn !== "true") {
-      router.replace("/login")
+    if (signedIn !== 'true') {
+      router.replace('/login')
     }
-  }, [])
+  })
 
   return (
     <>
