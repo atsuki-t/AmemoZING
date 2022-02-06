@@ -32,6 +32,11 @@ const Login: React.FC = () => {
     })
   }
 
+  const guestLogin = () => {
+    Cookies.set('signedIn', 'true')
+    router.replace('/')
+  }
+
   return (
     <div className="vh-100 d-flex align-items-center">
       <div className="mx-auto" style={{ minWidth: 800 }}>
@@ -53,7 +58,7 @@ const Login: React.FC = () => {
           </form>
 
           <Link href="/sign_up"><a className="text-primary mb-4">アカウント新規登録はこちら</a></Link>
-          <Link href="/"><a className="text-primary">ゲストでのログインはこちら</a></Link>
+          <p onClick={guestLogin} className="text-primary pointer">ゲストでのログインはこちら</p>
         </div>
       </div>
     </div>

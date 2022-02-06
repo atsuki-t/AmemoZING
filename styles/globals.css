@@ -1,4 +1,4 @@
-@import 'bootstrap/dist/css/bootstrap.min.css';
+@import "bootstrap/dist/css/bootstrap.min.css";
 
 html,
 body {
@@ -15,4 +15,8 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.pointer {
+  cursor: pointer;
 }
