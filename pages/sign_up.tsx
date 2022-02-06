@@ -9,14 +9,14 @@ const SignUp: React.FC = () => {
 
   const registerAccount = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const username: String = event.currentTarget.username.value;
-    const password: String = event.currentTarget.password.value;
+    const username: String = event.currentTarget.username.value
+    const password: String = event.currentTarget.password.value
 
     axios.post('/api/user', {
       username: username,
       password: password
     }).then((res) => {
-      router.replace("/login")
+      router.replace('/login')
     }).catch((err) => {
       // 通信に失敗した時、もしくは保存に失敗した時の処理
     })
