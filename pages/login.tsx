@@ -5,7 +5,7 @@ import Cookies from 'js-cookie'
 
 import axios from 'axios'
 
-const Login: React.FC = () => {
+const Login: React.VFC = () => {
   const router = useRouter()
 
   const submitContact = async (event: React.FormEvent<HTMLFormElement>) => {

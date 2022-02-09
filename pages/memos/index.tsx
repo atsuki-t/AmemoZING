@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-const Memo: React.FC = () => {
+const Memos: React.VFC = () => {
   return (
     <div>
       test
@@ -8,4 +8,4 @@ const Memo: React.FC = () => {
   )
 }
 
-export default Memo
+export default Memos

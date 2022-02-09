@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 
 import axios from 'axios'
 
-const SignUp: React.FC = () => {
+const SignUp: React.VFC = () => {
   const router = useRouter()
 
   const registerAccount = async (event: React.FormEvent<HTMLFormElement>) => {
