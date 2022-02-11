@@ -5,7 +5,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "yarn eslint --fix '**/*.{ts,tsx}'"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
@@ -13,6 +14,7 @@
     "@iconify/icons-eva": "^1.1.0",
     "@iconify/react": "^3.1.3",
     "@mui/material": "^5.4.1",
+    "@types/lodash": "^4.14.178",
     "axios": "^0.25.0",
     "bootstrap": "^5.1.3",
     "js-cookie": "^3.0.1",
