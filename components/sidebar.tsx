@@ -24,52 +24,25 @@ const Sidebar: React.VFC<Props> = ({ routes, logoText, handleDrawerToggle, open,
   const classes = useStyles()
 
   function activeRoute(routeName: string) {
-    return router.route.indexOf(routeName) > -1 ? true : false
+    return router.route.indexOf(routeName) > -1
   }
-  var links = (
+  const links = (
     <List className={classes.list}>
       {routes.map((prop, key) => {
-        var activePro = ' '
-        var listItemClasses
-        if (prop.path === '/upgrade-to-pro') {
-          activePro = classes.activePro + ' '
-          listItemClasses = classNames({
-            [' ' + classes[color]]: true,
-          })
-        } else {
-          listItemClasses = classNames({
-            [' ' + classes[color]]: activeRoute(prop.path),
-          })
-        }
+        const listItemClasses = classNames({
+          [' ' + classes[color]]: activeRoute(prop.path),
+        })
         const whiteFontClasses = classNames({
-          [' ' + classes.whiteFont]:
-            activeRoute(prop.path) ||
-            prop.path === '/upgrade-to-pro',
+          [' ' + classes.whiteFont]: activeRoute(prop.path)
         })
         return (
           <Link href={prop.path} key={key}>
-            <a className={activePro + classes.item}>
+            <a className={classes.item}>
               <ListItem button className={classes.itemLink + listItemClasses}>
-                {typeof prop.icon === 'string' ? (
-                  <Icon
-                    className={classNames(classes.itemIcon, whiteFontClasses, {
-                      [classes.itemIconRTL]: false,
-                    })}
-                  >
-                    {prop.icon}
-                  </Icon>
-                ) : (
-                  <prop.icon
-                    className={classNames(classes.itemIcon, whiteFontClasses, {
-                      [classes.itemIconRTL]: false,
-                    })}
-                  />
-                )}
+                <prop.icon className={classNames(classes.itemIcon, whiteFontClasses)} />
                 <ListItemText
                   primary={prop.name}
-                  className={classNames(classes.itemText, whiteFontClasses, {
-                    [classes.itemTextRTL]: false,
-                  })}
+                  className={classNames(classes.itemText, whiteFontClasses)}
                   disableTypography={true}
                 />
               </ListItem>
@@ -79,39 +52,25 @@ const Sidebar: React.VFC<Props> = ({ routes, logoText, handleDrawerToggle, open,
       })}
     </List>
   )
-  var brand = (
+  const brand = (
     <div className={classes.logo}>
-      <a
-        href="https://www.creative-tim.com?ref=njsmd-sidebar"
-        className={classNames(classes.logoLink, {
-          [classes.logoLinkRTL]: false,
-        })}
-        target="_blank" rel="noreferrer"
-      >
-        <div className={classes.logoImage}>
-          {/* ロゴ */}
-          {/* <img src="amemozing.jpg" alt="logo" className={classes.img} /> */}
-        </div>
-        {logoText}
-      </a>
+      <Link href="/">
+        <a className={classNames(classes.logoLink)}>
+          {logoText}
+        </a>
+      </Link>
     </div>
   )
   return (
     <div>
       <Hidden mdUp implementation="css">
         <Drawer
+          anchor="right"
           variant="temporary"
-          anchor={'right'}
           open={open}
-          classes={{
-            paper: classNames(classes.drawerPaper, {
-              [classes.drawerPaperRTL]: false,
-            }),
-          }}
+          classes={{ paper: classNames(classes.drawerPaper) }}
           onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
+          ModalProps={{ keepMounted: true }}
         >
           {brand}
           <div
@@ -122,14 +81,9 @@ const Sidebar: React.VFC<Props> = ({ routes, logoText, handleDrawerToggle, open,
       </Hidden>
       <Hidden smDown implementation="css">
         <Drawer
-          anchor={'left'}
+          anchor="left"
           variant="permanent"
-          open
-          classes={{
-            paper: classNames(classes.drawerPaper, {
-              [classes.drawerPaperRTL]: false,
-            }),
-          }}
+          classes={{ paper: classNames(classes.drawerPaper) }}
         >
           {brand}
           <div className={classes.sidebarWrapper}>{links}</div>

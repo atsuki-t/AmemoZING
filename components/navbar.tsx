@@ -3,11 +3,10 @@ import classNames from 'classnames'
 import { useRouter } from 'next/router'
 
 import { makeStyles } from '@material-ui/core/styles'
-import { AppBar, Toolbar, IconButton, Hidden } from '@material-ui/core'
+import { AppBar, Toolbar, IconButton, Hidden, Button } from '@material-ui/core'
 import Menu from '@material-ui/icons/Menu'
 
 import NavTool from './navTool'
-import Button from '@material-ui/core/Button'
 
 import type { dashboardRoutesType } from './routes'
 import styles from './material-dashboard-style/navbarStyle'
@@ -20,11 +19,12 @@ type Props = {
 
 const Header: React.VFC<Props> = ({ routes, handleDrawerToggle, color }) => {
   const router = useRouter()
-
   const useStyles = makeStyles(styles)
   const classes = useStyles()
+  const appBarClasses = classNames({ [' ' + classes[color]]: color })
+
   function makeBrand() {
-    var name = 'NextJS Material Dashboard'
+    let name = 'NextJS Material Dashboard'
     routes.map((prop) => {
       if (router.route.indexOf(prop.path) !== -1) {
         name = prop.name
@@ -33,16 +33,14 @@ const Header: React.VFC<Props> = ({ routes, handleDrawerToggle, color }) => {
     })
     return name
   }
-  const appBarClasses = classNames({
-    [' ' + classes[color]]: color,
-  })
+
   return (
     <AppBar className={classes.appBar + appBarClasses}>
       <Toolbar className={classes.container}>
         <div className={classes.flex}>
-          <Button href="#" className={classes.title}>
+          <span className={classes.title}>
             {makeBrand()}
-          </Button>
+          </span>
         </div>
         <Hidden smDown implementation="css">
           <NavTool />
