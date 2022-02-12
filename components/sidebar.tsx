@@ -73,6 +73,7 @@ const Sidebar: React.VFC<Props> = ({ routes, logoText, handleDrawerToggle, open,
           ModalProps={{ keepMounted: true }}
         >
           {brand}
+          <div className={classes.sidebarWrapper}>{links}</div>
           <div
             className={classes.background}
             style={{ backgroundColor: 'gray' }}

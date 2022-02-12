@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { useRouter } from 'next/router'
 
 import { makeStyles } from '@material-ui/core/styles'
-import { AppBar, Toolbar, IconButton, Hidden, Button } from '@material-ui/core'
+import { AppBar, Toolbar, IconButton, Hidden } from '@material-ui/core'
 import Menu from '@material-ui/icons/Menu'
 
 import NavTool from './navTool'

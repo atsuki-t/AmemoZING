@@ -1,5 +1,7 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import classNames from 'classnames'
+import Cookies from 'js-cookie'
 
 import { makeStyles } from '@material-ui/core/styles'
 import { MenuItem, MenuList, Grow, Paper, ClickAwayListener, Hidden, Popper, Divider } from '@material-ui/core'
@@ -10,6 +12,7 @@ import Button from './button'
 import styles from './material-dashboard-style/navTool'
 
 const NavTool: React.VFC = () => {
+  const router = useRouter()
   const useStyles = makeStyles(styles)
   const classes = useStyles()
   const [openProfile, setOpenProfile] = React.useState<any>(null)
@@ -21,6 +24,12 @@ const NavTool: React.VFC = () => {
     } else {
       setOpenProfile(event.currentTarget)
     }
+  }
+
+  const logout = () => {
+    setOpenProfile(null)
+    Cookies.remove('signedIn')
+    router.replace('/login')
   }
 
   return (
@@ -62,14 +71,7 @@ const NavTool: React.VFC = () => {
               <Paper>
                 <ClickAwayListener onClickAway={() => setOpenProfile(null)}>
                   <MenuList role="menu">
-                    <MenuItem onClick={() => setOpenProfile(null)} className={classes.dropdownItem}>
-                      Profile
-                    </MenuItem>
-                    <MenuItem onClick={() => setOpenProfile(null)} className={classes.dropdownItem}>
-                      Settings
-                    </MenuItem>
-                    <Divider light />
-                    <MenuItem onClick={() => setOpenProfile(null)} className={classes.dropdownItem}>
+                    <MenuItem onClick={logout} className={classes.dropdownItem}>
                       Logout
                     </MenuItem>
                   </MenuList>
