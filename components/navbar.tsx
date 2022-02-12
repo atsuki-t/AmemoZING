@@ -1,48 +1,64 @@
-import PropTypes from 'prop-types'
-import { Icon } from '@iconify/react'
-import menu2Fill from '@iconify/icons-eva/menu-2-fill'
+import React from 'react'
+import classNames from 'classnames'
+import { useRouter } from 'next/router'
 
-import { alpha, styled } from '@mui/material/styles'
-import { AppBar, Toolbar, IconButton } from '@mui/material'
+import { makeStyles } from '@material-ui/core/styles'
+import { AppBar, Toolbar, IconButton, Hidden } from '@material-ui/core'
+import Menu from '@material-ui/icons/Menu'
 
-import MHidden from './minimal-template/components/MHidden'
+import NavTool from './navTool'
+import Button from '@material-ui/core/Button'
 
-const DRAWER_WIDTH = 280
-const APPBAR_MOBILE = 64
-const APPBAR_DESKTOP = 92
+import type { dashboardRoutesType } from './routes'
+import styles from './material-dashboard-style/navbarStyle'
 
-const RootStyle = styled(AppBar)(({ theme }) => ({
-  boxShadow: 'none',
-  backdropFilter: 'blur(6px)',
-  WebkitBackdropFilter: 'blur(6px)', // Fix on Mobile
-  backgroundColor: alpha(theme.palette.background.default, 0.72),
-  [theme.breakpoints.up('lg')]: {
-    width: `calc(100% - ${DRAWER_WIDTH + 1}px)`
-  }
-}))
-
-const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
-  minHeight: APPBAR_MOBILE,
-  [theme.breakpoints.up('lg')]: {
-    minHeight: APPBAR_DESKTOP,
-    padding: theme.spacing(0, 5)
-  }
-}))
-
-DashboardNavbar.propTypes = {
-  onOpenSidebar: PropTypes.func
+type Props = {
+  routes: dashboardRoutesType
+  handleDrawerToggle: any
+  color: string
 }
 
-export default function DashboardNavbar({ onOpenSidebar }: any) {
+const Header: React.VFC<Props> = ({ routes, handleDrawerToggle, color }) => {
+  const router = useRouter()
+
+  const useStyles = makeStyles(styles)
+  const classes = useStyles()
+  function makeBrand() {
+    var name = 'NextJS Material Dashboard'
+    routes.map((prop) => {
+      if (router.route.indexOf(prop.path) !== -1) {
+        name = prop.name
+      }
+      return null
+    })
+    return name
+  }
+  const appBarClasses = classNames({
+    [' ' + classes[color]]: color,
+  })
   return (
-    <RootStyle>
-      <ToolbarStyle>
-        <MHidden width="lgUp">
-          <IconButton onClick={onOpenSidebar} sx={{ mr: 1, color: 'text.primary' }}>
-            <Icon icon={menu2Fill} />
+    <AppBar className={classes.appBar + appBarClasses}>
+      <Toolbar className={classes.container}>
+        <div className={classes.flex}>
+          <Button href="#" className={classes.title}>
+            {makeBrand()}
+          </Button>
+        </div>
+        <Hidden smDown implementation="css">
+          <NavTool />
+        </Hidden>
+        <Hidden mdUp implementation="css">
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerToggle}
+          >
+            <Menu />
           </IconButton>
-        </MHidden>
-      </ToolbarStyle>
-    </RootStyle>
+        </Hidden>
+      </Toolbar>
+    </AppBar>
   )
 }
+
+export default Header
