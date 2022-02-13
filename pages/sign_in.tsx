@@ -1,25 +1,35 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import Cookies from 'js-cookie'
 import axios from 'axios'
 import { Container, Card, TextField, Button, Typography, Avatar, CssBaseline } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 
-const SignUp: React.VFC = () => {
+const SignIn: React.VFC = () => {
   const router = useRouter()
 
-  const registerAccount = async (event: React.FormEvent<HTMLFormElement>) => {
+  const submitContact = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const username: String = event.currentTarget.username.value
     const password: String = event.currentTarget.password.value
 
-    axios.post('/api/user', {
-      username: username,
-      password: password
+    axios.get('/api/user_find', {
+      params: {
+        username: username,
+        password: password
+      }
     }).then((res) => {
-      router.replace('/sign_in')
+      const { data } = res
+
+      if (data) {
+        Cookies.set('signedIn', 'true')
+        router.replace('/memos')
+      } else {
+        // アカウントが見つからなかった時の処理
+      }
     }).catch((err) => {
-      // 通信に失敗した時、もしくは保存に失敗した時の処理
+      // データの取得に失敗した時の処理
     })
   }
 
@@ -33,10 +43,10 @@ const SignUp: React.VFC = () => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign up
+              Sign in
             </Typography>
 
-            <form onSubmit={registerAccount} className="w-100" noValidate>
+            <form onSubmit={submitContact} className="w-100" noValidate>
               <TextField
                 margin="normal"
                 required
@@ -62,15 +72,15 @@ const SignUp: React.VFC = () => {
                 color="primary"
                 className="my-4"
               >
-                Sign Up
+                Sign In
               </Button>
             </form>
           </div>
-          <Link href="/sign_in"><a className="text-primary">ログインはこちら</a></Link>
+          <Link href="/sign_up"><a className="text-primary">アカウント新規登録はこちら</a></Link>
         </Card>
       </Container>
     </div>
   )
 }
 
-export default SignUp
+export default SignIn
