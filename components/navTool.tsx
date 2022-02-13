@@ -4,8 +4,9 @@ import classNames from 'classnames'
 import Cookies from 'js-cookie'
 
 import { makeStyles } from '@material-ui/core/styles'
-import { MenuItem, MenuList, Grow, Paper, ClickAwayListener, Hidden, Popper, Divider } from '@material-ui/core'
-import { Person, Search } from '@material-ui/icons'
+import { MenuItem, MenuList, Grow, Paper, ClickAwayListener, Hidden, Popper } from '@material-ui/core'
+import Person from '@material-ui/icons/Person'
+import Search from '@material-ui/icons/Search'
 
 import CustomInput from './customInput'
 import Button from './button'
@@ -29,7 +30,7 @@ const NavTool: React.VFC = () => {
   const logout = () => {
     setOpenProfile(null)
     Cookies.remove('signedIn')
-    router.replace('/login')
+    router.replace('/sign_in')
   }
 
   return (

@@ -21,12 +21,12 @@ const appStyle: any = (theme: any) => ({
     maxHeight: '100%',
     width: '100%',
     overflowScrolling: 'touch',
-    backgroundColor: '#eee'
+    backgroundColor: '#f8f9fa'
   },
   content: {
     marginTop: '70px',
     padding: '30px 15px',
-    minHeight: 'calc(100vh - 123px)',
+    minHeight: 'calc(100vh - 155px)',
   },
   container,
   map: {
