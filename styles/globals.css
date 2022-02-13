@@ -20,3 +20,7 @@ a {
 .pointer {
   cursor: pointer;
 }
+
+.MuiInput-underline:hover:not(.Mui-disabled):before {
+  border-bottom: 2px solid rgb(174, 174, 174) !important;
+}

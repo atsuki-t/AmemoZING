@@ -3,7 +3,8 @@ import classNames from 'classnames'
 
 import { makeStyles } from '@material-ui/core/styles'
 import { FormControl, InputLabel, Input } from '@material-ui/core'
-import { Clear, Check } from '@material-ui/icons'
+import Clear from '@material-ui/icons/Clear'
+import Check from '@material-ui/icons/Check'
 
 import styles from './material-dashboard-style/customInputStyle'
 

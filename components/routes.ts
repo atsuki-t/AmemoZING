@@ -1,4 +1,5 @@
-import { Dashboard, Person, LibraryBooks } from '@material-ui/icons'
+import LibraryBooks from '@material-ui/icons/LibraryBooks'
+import FormatListNumbered from '@material-ui/icons/FormatListNumbered'
 
 export type dashboardRoutesType = {
   path: string
@@ -8,24 +9,14 @@ export type dashboardRoutesType = {
 
 const dashboardRoutes: dashboardRoutesType = [
   {
-    path: '/',
-    name: 'Dashboard',
-    icon: Dashboard
-  },
-  {
     path: '/memos',
-    name: 'Memos',
+    name: 'メモ',
     icon: LibraryBooks
   },
   {
-    path: '/login',
-    name: 'Login',
-    icon: Person
-  },
-  {
-    path: '/sign_up',
-    name: 'Sign up',
-    icon: Person
+    path: '/question_formats',
+    name: '質問フォーマット',
+    icon: FormatListNumbered
   }
 ]
 
