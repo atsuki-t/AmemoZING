@@ -2,13 +2,19 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
 
+import Layout from '../components/layout'
+
 const Auth: React.FC = ({ children }) => {
-  const [showChild, setShowChild] = useState(false)
   const router = useRouter()
+  const path = router.pathname
+  const [showChild, setShowChild] = useState(false)
+  const [showLayout, setShowLayout] = useState(false)
 
   useEffect(() => {
+    setShowChild(false)
+    setShowLayout(false)
     // ログイン画面とアカウント作成画面では Cookie のチェックをしない
-    if (router.pathname == '/login' || router.pathname == '/sign_up') {
+    if (path == '/' || path == '/sign_in' || path == '/sign_up') {
       setShowChild(true)
       return
     }
@@ -16,19 +22,22 @@ const Auth: React.FC = ({ children }) => {
     // Cookie のチェック
     const signedIn = Cookies.get('signedIn')
 
-    // signedIn が true であれば画面を表示し、false であれば /login へ移動する
+    // signedIn が true であれば画面を表示し、false であれば /sign_in へ移動する
     if (signedIn) {
       setShowChild(true)
+      setShowLayout(true)
     } else {
-      router.replace('/login')
+      router.replace('/sign_in')
     }
-  }, [router])
+  }, [router, path])
 
   if (!showChild) {
     return null
+  } else if (!showLayout) {
+    return <>{children}</>
+  } else {
+    return <Layout>{children}</Layout>
   }
-
-  return <>{children}</>
 }
 
 export default Auth

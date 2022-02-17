@@ -1,0 +1,37 @@
+import {
+  drawerWidth,
+  transition,
+  container,
+} from './materialDashboard'
+
+const appStyle: any = (theme: any) => ({
+  wrapper: {
+    position: 'relative',
+    top: '0',
+    height: '100vh',
+  },
+  mainPanel: {
+    [theme.breakpoints.up('md')]: {
+      width: `calc(100% - ${drawerWidth}px)`,
+    },
+    overflow: 'auto',
+    position: 'relative',
+    float: 'right',
+    ...transition,
+    maxHeight: '100%',
+    width: '100%',
+    overflowScrolling: 'touch',
+    backgroundColor: '#f8f9fa'
+  },
+  content: {
+    marginTop: '70px',
+    padding: '30px 15px',
+    minHeight: 'calc(100vh - 155px)',
+  },
+  container,
+  map: {
+    marginTop: '70px',
+  },
+})
+
+export default appStyle
