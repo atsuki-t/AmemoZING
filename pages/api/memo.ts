@@ -18,7 +18,10 @@ export default async function handler (req: NextApiRequest, res: NextApiResponse
 
   case 'POST':
     try {
-      const data = await User.create(req.body)
+      const username = req.query.username
+      const title = req.query.title
+      const text = req.query.text
+      const data = await User.updateOne({ username }, { $set: { memos: { title, text } }})
       res.status(201).json({ success: true, data })
     } catch (error) {
       res.status(400).json({ success: false, error: error })
