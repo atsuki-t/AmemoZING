@@ -9,7 +9,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 const SignIn: React.VFC = () => {
   const router = useRouter()
 
-  const submitContact = async (event: React.FormEvent<HTMLFormElement>) => {
+  const submitContact = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const username: String = event.currentTarget.username.value
     const password: String = event.currentTarget.password.value
@@ -46,7 +46,7 @@ const SignIn: React.VFC = () => {
               Sign in
             </Typography>
 
-            <form onSubmit={submitContact} className="w-100" noValidate>
+            <form onSubmit={submitContact} className="w-100">
               <TextField
                 margin="normal"
                 required
@@ -60,6 +60,7 @@ const SignIn: React.VFC = () => {
                 margin="normal"
                 required
                 fullWidth
+                type="password"
                 id="password"
                 label="Password"
                 name="password"

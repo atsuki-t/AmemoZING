@@ -1,10 +1,13 @@
 import * as React from 'react'
+import { Container, Card } from '@material-ui/core'
 
 const Memos: React.VFC = () => {
   return (
-    <div>
-      test
-    </div>
+    <Container maxWidth="lg">
+      <Card className="p-4">
+        test
+      </Card>
+    </Container>
   )
 }
 
