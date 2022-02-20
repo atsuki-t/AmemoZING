@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
+import memoSchema from './memo'
 
-const user = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
@@ -9,7 +10,11 @@ const user = new mongoose.Schema({
   password: {
     type: String,
     required: true
+  },
+  memos: {
+    type: [memoSchema],
+    default: []
   }
 })
 
-export default mongoose.models.User || mongoose.model('User', user)
+export default mongoose.models.User || mongoose.model('User', userSchema)

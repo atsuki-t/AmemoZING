@@ -8,7 +8,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 const SignUp: React.VFC = () => {
   const router = useRouter()
 
-  const registerAccount = async (event: React.FormEvent<HTMLFormElement>) => {
+  const registerAccount = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const username: String = event.currentTarget.username.value
     const password: String = event.currentTarget.password.value
@@ -36,7 +36,7 @@ const SignUp: React.VFC = () => {
               Sign up
             </Typography>
 
-            <form onSubmit={registerAccount} className="w-100" noValidate>
+            <form onSubmit={registerAccount} className="w-100" autoComplete="off">
               <TextField
                 margin="normal"
                 required

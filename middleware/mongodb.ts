@@ -8,8 +8,8 @@ if (!MONGODB_URI) {
   )
 }
 
-const connectDB = async() => {
-  await mongoose.connect(MONGODB_URI)
+const connectDB = () => {
+  mongoose.connect(MONGODB_URI)
 }
 
 export default connectDB

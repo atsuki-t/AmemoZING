@@ -1,5 +1,6 @@
 import LibraryBooks from '@material-ui/icons/LibraryBooks'
 import FormatListNumbered from '@material-ui/icons/FormatListNumbered'
+import LibraryAddIcon from '@material-ui/icons/LibraryAdd'
 
 export type dashboardRoutesType = {
   path: string
@@ -8,6 +9,11 @@ export type dashboardRoutesType = {
 }[]
 
 const dashboardRoutes: dashboardRoutesType = [
+  {
+    path: '/new_memo',
+    name: '新規メモ作成',
+    icon: LibraryAddIcon
+  },
   {
     path: '/memos',
     name: 'メモ',

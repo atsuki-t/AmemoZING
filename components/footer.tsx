@@ -9,7 +9,7 @@ const Footer: React.VFC = () => {
   return (
     <footer className={classes.footer}>
       <p className={classes.center}>
-        Copyright &copy; 2022 atsuki-t, gunzi-s
+        Copyright &copy; 2022 atsuki-t, gunji-s
       </p>
     </footer>
   )

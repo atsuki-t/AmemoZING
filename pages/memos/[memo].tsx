@@ -1,10 +1,11 @@
 import * as React from 'react'
 
-const Memos: React.VFC = () => {
+const Memo: React.VFC = () => {
   return (
     <div>
+      test
     </div>
   )
 }
 
-export default Memos
+export default Memo

@@ -9,20 +9,18 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 const SignIn: React.VFC = () => {
   const router = useRouter()
 
-  const submitContact = async (event: React.FormEvent<HTMLFormElement>) => {
+  const submitContact = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const username: String = event.currentTarget.username.value
     const password: String = event.currentTarget.password.value
 
-    axios.get('/api/user_find', {
+    axios.get('/api/user', {
       params: {
         username: username,
         password: password
       }
     }).then((res) => {
-      const { data } = res
-
-      if (data) {
+      if (res.data) {
         Cookies.set('signedIn', 'true')
         router.replace('/memos')
       } else {
@@ -46,7 +44,7 @@ const SignIn: React.VFC = () => {
               Sign in
             </Typography>
 
-            <form onSubmit={submitContact} className="w-100" noValidate>
+            <form onSubmit={submitContact} className="w-100">
               <TextField
                 margin="normal"
                 required
@@ -60,6 +58,7 @@ const SignIn: React.VFC = () => {
                 margin="normal"
                 required
                 fullWidth
+                type="password"
                 id="password"
                 label="Password"
                 name="password"
