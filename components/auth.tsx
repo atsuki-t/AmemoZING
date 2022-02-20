@@ -21,9 +21,10 @@ const Auth: React.FC = ({ children }) => {
 
     // Cookie のチェック
     const signedIn = Cookies.get('signedIn')
+    const loginedUser = Cookies.get('loginedUser')
 
     // signedIn が true であれば画面を表示し、false であれば /sign_in へ移動する
-    if (signedIn) {
+    if (signedIn && loginedUser) {
       setShowChild(true)
       setShowLayout(true)
     } else {

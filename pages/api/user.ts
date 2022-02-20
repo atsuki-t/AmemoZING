@@ -11,18 +11,18 @@ const UserAPI = async (req: NextApiRequest, res: NextApiResponse) => {
       const username = req.query.username
       const password = req.query.password
       const data = await User.findOne({ username, password })
-      res.status(200).json({ success: true, data })
+      res.status(200).json(data)
     } catch (error) {
-      res.status(400).json({ success: false, error: error })
+      res.status(400).json(error)
     }
     break
 
   case 'POST':
     try {
       const data = await User.create(req.body)
-      res.status(201).json({ success: true, data })
+      res.status(201).json(data)
     } catch (error) {
-      res.status(400).json({ success: false, error: error })
+      res.status(400).json(error)
     }
     break
 
