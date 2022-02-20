@@ -14,15 +14,13 @@ const SignIn: React.VFC = () => {
     const username: String = event.currentTarget.username.value
     const password: String = event.currentTarget.password.value
 
-    axios.get('/api/user_find', {
+    axios.get('/api/user', {
       params: {
         username: username,
         password: password
       }
     }).then((res) => {
-      const { data } = res
-
-      if (data) {
+      if (res.data) {
         Cookies.set('signedIn', 'true')
         router.replace('/memos')
       } else {

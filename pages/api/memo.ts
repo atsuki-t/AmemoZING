@@ -2,7 +2,7 @@ import connectDB from '../../middleware/mongodb'
 import User from '../../models/user'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-export default async function handler (req: NextApiRequest, res: NextApiResponse) {
+const MemoAPI = async (req: NextApiRequest, res: NextApiResponse) => {
   await connectDB()
 
   switch (req.method) {
@@ -33,3 +33,5 @@ export default async function handler (req: NextApiRequest, res: NextApiResponse
     break
   }
 }
+
+export default MemoAPI
