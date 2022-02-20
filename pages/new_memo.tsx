@@ -8,7 +8,7 @@ const NewMemo: React.VFC = () => {
 
   const createMemo = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const username: String = 'test3'
+    const username: String = 'test'
     const title: String = event.currentTarget.memoTitle.value
     const text: String = event.currentTarget.text.value
 

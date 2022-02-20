@@ -8,12 +8,14 @@ const memoSchema = new mongoose.Schema({
   text: {
     type: String
   },
-  created_date: {
+  created_at: {
     type: Date,
+    default: Date.now,
     required: true
   },
-  updated_date: {
+  updated_at: {
     type: Date,
+    default: Date.now,
     required: true
   }
 })
