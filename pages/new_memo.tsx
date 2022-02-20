@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
+import Cookies from 'js-cookie'
 import { Container, Card, TextField, Button } from '@material-ui/core'
 
 const NewMemo: React.VFC = () => {
@@ -8,12 +9,12 @@ const NewMemo: React.VFC = () => {
 
   const createMemo = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const username: String = 'test'
+    const loginedUser = Cookies.get('loginedUser')
     const title: String = event.currentTarget.memoTitle.value
     const text: String = event.currentTarget.text.value
 
     axios.post('/api/memo', {
-      username,
+      username: loginedUser,
       title,
       text
     }).then((res) => {

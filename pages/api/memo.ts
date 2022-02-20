@@ -12,7 +12,7 @@ const MemoAPI = async (req: NextApiRequest, res: NextApiResponse) => {
       const data = await User.findOne({ username })
       res.status(200).json(data.memos)
     } catch (error) {
-      res.status(400).json({ success: false, error: error })
+      res.status(400).json({ error })
     }
     break
 
@@ -22,9 +22,9 @@ const MemoAPI = async (req: NextApiRequest, res: NextApiResponse) => {
       const title = req.body.title
       const text = req.body.text
       const data = await User.updateOne({ username }, { $push: { memos: { title, text } } })
-      res.status(201).json({ success: true, data })
+      res.status(201).json({ data })
     } catch (error) {
-      res.status(400).json({ success: false, error: error })
+      res.status(400).json({ error })
     }
     break
 

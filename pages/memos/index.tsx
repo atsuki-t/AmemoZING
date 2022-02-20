@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import Cookies from 'js-cookie'
 import { Container, Card, Table, TableBody, TableRow, TableCell } from '@material-ui/core'
 
 type memoType = {
@@ -10,7 +11,8 @@ type memoType = {
 const Memos: React.VFC = () => {
   const [memos, setMemos] = useState<memoType>([])
   useEffect(() => {
-    axios.get('/api/memo', { params: { username: 'test' } }).then((res) => { setMemos(res.data) })
+    const loginedUser = Cookies.get('loginedUser')
+    axios.get('/api/memo', { params: { username: loginedUser } }).then((res) => { setMemos(res.data) })
   }, [])
 
   return (
