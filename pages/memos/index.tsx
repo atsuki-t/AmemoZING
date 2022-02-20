@@ -1,20 +1,17 @@
-import * as React from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Container, Card, Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core'
+import { Container, Card, Table, TableBody, TableRow, TableCell } from '@material-ui/core'
 
 type memoType = {
   title: string
   text: string
-}
+}[]
 
 const Memos: React.VFC = () => {
-  let memos: Array<memoType> = []
-  axios.get('/api/memo', { params: { username: 'test' }
-  }).then((res) => {
-    memos = res.data
-  }).catch((err) => {
-    // データの取得に失敗した時の処理
-  })
+  const [memos, setMemos] = useState<memoType>([])
+  useEffect(() => {
+    axios.get('/api/memo', { params: { username: 'test' } }).then((res) => { setMemos(res.data) })
+  }, [])
 
   return (
     <Container maxWidth="lg">
