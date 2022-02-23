@@ -13,6 +13,7 @@ const SignIn: React.VFC = () => {
 
   const submitContact = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    if (alert) { setAlert(' ') }
     const username: String = event.currentTarget.username.value
     const password: String = event.currentTarget.password.value
 
@@ -22,10 +23,10 @@ const SignIn: React.VFC = () => {
         Cookies.set('loginedUser', res.data.username)
         router.replace('/memos')
       } else {
-        // アカウントが見つからなかった時の処理
+        setAlert('ユーザー名またはパスワードが間違っています。')
       }
-    }).catch((err) => {
-      // データの取得に失敗した時の処理
+    }).catch((error) => {
+      setAlert('データベースとの接続に失敗しました。')
     })
   }
 
@@ -42,7 +43,9 @@ const SignIn: React.VFC = () => {
               Sign in
             </Typography>
 
-            (alert && <Alert severity="error">This is an error alert — check it out!</Alert>)
+            {alert && (
+              <Alert severity="error" className="w-100 py-0 mt-3">{alert}</Alert>
+            )}
             <form onSubmit={submitContact} className="w-100">
               <TextField
                 margin="normal"
