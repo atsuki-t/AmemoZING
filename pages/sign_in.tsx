@@ -1,13 +1,15 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
 import axios from 'axios'
 import { Container, Card, TextField, Button, Typography, Avatar, CssBaseline } from '@material-ui/core'
+import Alert from '@material-ui/lab/Alert'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 
 const SignIn: React.VFC = () => {
   const router = useRouter()
+  const [alert, setAlert] = useState('')
 
   const submitContact = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -40,6 +42,7 @@ const SignIn: React.VFC = () => {
               Sign in
             </Typography>
 
+            (alert && <Alert severity="error">This is an error alert — check it out!</Alert>)
             <form onSubmit={submitContact} className="w-100">
               <TextField
                 margin="normal"
