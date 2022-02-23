@@ -1,15 +1,18 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import { Container, Card, TextField, Button, Typography, Avatar, CssBaseline } from '@material-ui/core'
+import Alert from '@material-ui/lab/Alert'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 
 const SignUp: React.VFC = () => {
   const router = useRouter()
+  const [alert, setAlert] = useState('')
 
   const registerAccount = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    if (alert) { setAlert(' ') }
     const username: String = event.currentTarget.username.value
     const password: String = event.currentTarget.password.value
 
@@ -17,9 +20,15 @@ const SignUp: React.VFC = () => {
       username: username,
       password: password
     }).then((res) => {
+      console.log(res)
       router.replace('/sign_in')
-    }).catch((err) => {
-      // 通信に失敗した時、もしくは保存に失敗した時の処理
+    }).catch((error) => {
+      const error_code: number = error.response.data.code
+      if (error_code == 11000) {
+        setAlert('ユーザー名は既に存在しています。')
+      } else {
+        setAlert('データベースとの接続に失敗しました。')
+      }
     })
   }
 
@@ -36,6 +45,9 @@ const SignUp: React.VFC = () => {
               Sign up
             </Typography>
 
+            {alert && (
+              <Alert severity="error" className="w-100 py-0 mt-3">{alert}</Alert>
+            )}
             <form onSubmit={registerAccount} className="w-100" autoComplete="off">
               <TextField
                 margin="normal"
